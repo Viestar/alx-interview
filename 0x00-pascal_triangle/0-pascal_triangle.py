@@ -1,12 +1,16 @@
 #!/usr/bin/python3
 """ Returns a representation of a Pascal's triangle """
+
+
 def pascal_triangle(n):
     """ Returns a list of lists for Pascal's triangle"""
-    pascaList = []
-    if (n > 1):
-        pascaList.append([1])
-        for row in range(n -1):
-            pascaList.append([1] + [pascaList[row][column] + pascaList[row][column + 1]
-                        for column in range(len(pascaList[row]) - 1)] + [1])
-        return pascaList
-    return pascaList
+    pascal_list = []
+    for row in range(n):
+        if row == 0:
+            pascal_list.append([1])
+        else:
+            previous_row = pascal_list[-1]
+            new_row = [1] + [previous_row[i] + previous_row[i + 1]
+                             for i in range(len(previous_row) - 1)] + [1]
+            pascal_list.append(new_row)
+    return pascal_list
