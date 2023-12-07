@@ -1,17 +1,19 @@
 #!/usr/bin/python3
+""" Lockboxes """
+
 
 def canUnlockAll(boxes):
-    # Initialize a set to keep track of visited boxes
+    """ # Initialize a set to keep track of visited boxes """
     visited = set()
 
-    # Define a DFS function to explore boxes
+    """ Define a DFS function to explore boxes """
     def dfs(box):
-        # Mark the current box as visited
+        """ Mark the current box as visited """
         visited.add(box)
 
-        # Explore keys in the current box
+        """ Explore keys in the current box """
         for key in boxes[box]:
-            # If the key opens an unvisited box, recursively explore that box
+            """ If the key opens an unvisited box, recursively explores it """
             if key not in visited:
                 dfs(key)
 
@@ -21,8 +23,9 @@ def canUnlockAll(boxes):
     # Check if all boxes have been visited
     return len(visited) == len(boxes)
 
-# def canUnlockAll(boxes):
-#     """ Determines if all boxes can be opened """
+
+"""# def canUnlockAll(boxes):
+#     Determines if all boxes can be opened
 #     counter = 0
 #     for boxList in boxes:
 #         counter += 1
@@ -31,3 +34,4 @@ def canUnlockAll(boxes):
 #                 continue
 #             return False
 #         return True
+"""
