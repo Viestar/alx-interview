@@ -7,8 +7,8 @@ Returns an integer If n is impossible to achieve, return 0
 
 def minOperations(n):
     """
-    In in exactly n H characters in the file, this returns the 
-    fewest number of operation need to result 
+    In in exactly n H characters in the file, this returns the
+    fewest number of operation need to result
     """
     operations = 0
     min_operations = 2
