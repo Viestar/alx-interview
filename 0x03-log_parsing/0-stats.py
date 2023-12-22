@@ -6,43 +6,44 @@ and computes metrics:
 import sys
 
 
-def print_statistics(total_size, status_codes):
-    """ Prints status codes """
-    print(f"File size: {total_size}")
-    for code in sorted(status_codes):
-        print(f"{code}: {status_codes[code]}")
+file_size = 0
+
+status_codes = {
+    "200": 0,
+    "301": 0,
+    "400": 0,
+    "401": 0,
+    "403": 0,
+    "404": 0,
+    "405": 0,
+    "500": 0
+}
 
 
-def parse_line(line):
-    """ Returns parse lines """
-    parts = line.split()
-    if len(parts) >= 7 and parts[5].isdigit():
-        return int(parts[5]), int(parts[6])
-    return None
-
-
-def main():
-    """ Program entry point """
-    total_size = 0
-    status_codes = {}
-
-    try:
-        for i, line in enumerate(sys.stdin, start=1):
-            data = parse_line(line)
-            if data:
-                file_size, status_code = data
-                total_size += file_size
-                status_codes[status_code] = \
-                    status_codes.get(status_code, 0) + 1
-
-            if i % 10 == 0:
-                print_statistics(total_size, status_codes)
-
-    except KeyboardInterrupt:
-        pass  # Handle keyboard interruption
-
-    print_statistics(total_size, status_codes)
+def print_metrics():
+    """prints THE STATUS CODE logs """
+    print("File size: {}".format(file_size))
+    for code in sorted(status_codes.keys()):
+        if status_codes[code]:
+            print("{}: {}".format(code, status_codes[code]))
 
 
 if __name__ == "__main__":
-    main()
+    counter = 0
+    try:
+        for line in sys.stdin:
+            try:
+                elements = line.split()
+                file_size += int(elements[-1])
+                if elements[-2] in status_codes:
+                    status_codes[elements[-2]] += 1
+            except Exception:
+                pass
+            if counter == 9:
+                print_metrics()
+                counter = -1
+            counter += 1
+    except KeyboardInterrupt:
+        print_metrics()
+        raise
+    print_metrics()
