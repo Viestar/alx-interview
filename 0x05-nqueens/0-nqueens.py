@@ -5,14 +5,14 @@
 import sys
 
 
-def solution_generator(row, column):
+def generate_solutions(row, column):
     solution = [[]]
     for queen in range(row):
-        solution = queen_place(queen, column, solution)
+        solution = place_queen(queen, column, solution)
     return solution
 
 
-def queen_place(queen, column, prev_solution):
+def place_queen(queen, column, prev_solution):
     safe_position = []
     for array in prev_solution:
         for x in range(column):
@@ -48,7 +48,7 @@ def n_queens():
 
     n = init()
     # generate all solutions
-    solutions = solution_generator(n, n)
+    solutions = generate_solutions(n, n)
     # print solutions
     for array in solutions:
         clean = []
