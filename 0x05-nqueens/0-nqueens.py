@@ -5,51 +5,42 @@ nqueens problem solution
 import sys
 
 
-def backtrack(r, n, cols, pos, neg, board):
-    """
-    backtrack function to find solution
-    """
-    if r == n:
-        res = []
+def backtracker(row, n, col, pove, neve, board):
+    """ function to find solution through back tracking """
+    if row == n:
+        response = []
         for lq in range(len(board)):
-            for k in range(len(board[lq])):
-                if board[lq][k] == 1:
-                    res.append([lq, k])
-        print(res)
+            for king in range(len(board[lq])):
+                if board[lq][king] == 1:
+                    response.append([lq, king])
+        print(response)
         return
 
-    for c in range(n):
-        if c in cols or (r + c) in pos or (r - c) in neg:
+    for silver in range(n):
+        if silver in col or (row + silver) in pove or (row - silver) in neve:
             continue
 
-        cols.add(c)
-        pos.add(r + c)
-        neg.add(r - c)
-        board[r][c] = 1
+        col.add(silver)
+        pove.add(row + silver)
+        neve.add(row - silver)
+        board[row][silver] = 1
 
-        backtrack(r+1, n, cols, pos, neg, board)
+        backtracker(row+1, n, col, pove, neve, board)
 
-        cols.remove(c)
-        pos.remove(r + c)
-        neg.remove(r - c)
-        board[r][c] = 0
+        col.remove(silver)
+        pove.remove(row + silver)
+        neve.remove(row - silver)
+        board[row][silver] = 0
 
 
 def nqueens(n):
-    """
-    Solution to nqueens problem
-    Args:
-        n (int): number of queens. Must be >= 4
-    Return:
-        List of lists representing coordinates of each
-        queen for all possible solutions
-    """
-    cols = set()
-    pos_diag = set()
-    neg_diag = set()
+    """ Solution to nqueens problem  """
+    negative = set()
+    col = set()
+    positive = set()
     board = [[0] * n for i in range(n)]
 
-    backtrack(0, n, cols, pos_diag, neg_diag, board)
+    backtracker(0, n, col, positive, negative, board)
 
 
 if __name__ == "__main__":
