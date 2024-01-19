@@ -3,11 +3,11 @@
  * A script that prints all characters of a Star Wars movie
  */
 const request = require('request');
-const film_id = process.argv[2];
-if (!film_id || isNaN(film_id)) {
+const filmId = process.argv[2];
+if (!filmId || isNaN(filmId)) {
   process.exit(1);
 }
-const url = `https://swapi-api.hbtn.io/api/films/${film_id}`;
+const url = `https://swapi-api.hbtn.io/api/films/${filmId}`;
 
 request(url, (error, res, body) => {
   if (error) {
