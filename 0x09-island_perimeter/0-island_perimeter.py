@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Module that calculates the perimeter of a grid """
 
+
 def island_perimeter(grid):
     """ Returns the perimeter of a given piece of land """
     if not grid:
@@ -12,9 +13,8 @@ def island_perimeter(grid):
     for i in range(rows):
         for j in range(cols):
             if grid[i][j] == 1:
-                perimeter += 4  # Each land cell contributes 4 to perimeter
+                perimeter += 4
 
-                # Check adjacent cells and subtract if neighboring land exists
                 if i > 0 and grid[i - 1][j] == 1:
                     perimeter -= 2
                 if j > 0 and grid[i][j - 1] == 1:
