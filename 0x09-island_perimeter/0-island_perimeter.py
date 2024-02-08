@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+""" Module that calculates the perimeter of a grid """
+
 def island_perimeter(grid):
     """ Returns the perimeter of a given piece of land """
     if not grid:
