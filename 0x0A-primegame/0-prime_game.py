@@ -43,7 +43,7 @@ def isWinner(x, nums):
         return None
     elif wins["Maria"] > wins["Ben"]:
         return "Ben"
-    else:
+    elif wins["Ben"] > wins["Maria"]:
         return "Maria"
 
 
