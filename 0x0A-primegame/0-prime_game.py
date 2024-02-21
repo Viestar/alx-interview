@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-""" Prime Game Module """
+"""
+Prime Game Module
+"""
 
 
 def is_prime(num):
@@ -40,9 +42,9 @@ def isWinner(x, nums):
     if wins["Maria"] == wins["Ben"]:
         return None
     elif wins["Maria"] > wins["Ben"]:
-        return "Maria"
-    else:
         return "Ben"
+    else:
+        return "Maria"
 
 
 if __name__ == "__main__":
